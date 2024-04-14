@@ -10,7 +10,7 @@ version = project.mod_version
 loom {
 	gluedMinecraftJar()
 	noIntermediateMappings()
-	customMinecraftManifest.set("https://github.com/Turnip-Labs/bta-manifest-repo/releases/download/v${project.bta_version}/${project.bta_version}.json")
+	customMinecraftManifest.set("https://nightly.betterthanadventure.net/bta-${project.bta_version}-manifest.json")
 }
 
 repositories {
@@ -72,20 +72,31 @@ repositories {
 		}
 		metadataSources { artifact() }
 	}
+	ivy {
+		url = "https://nightly.betterthanadventure.net"
+		patternLayout {
+			artifact "/bta-[revision]-client.jar"
+			m2compatible = true
+		}
+		metadataSources { artifact() }
+	}
 }
 
 dependencies {
-	minecraft "bta-download-repo:bta:${project.bta_version}"
+	minecraft "::${project.bta_version}"
 	mappings loom.layered() {}
 
 	modRuntimeOnly "objects:client:43db9b498cb67058d2e12d394e6507722e71bb45" // https://piston-data.mojang.com/v1/objects/43db9b498cb67058d2e12d394e6507722e71bb45/client.jar
 	modImplementation "fabric-loader:fabric-loader:${project.loader_version}"
 
+	// Nightly builds are highly unstable, it is very likely that even these base mods might not work!
+	// Uncomment at your own risk.
+
 	// Helper library
 	// If you do not need Halplibe you can comment this line out or delete this line
-	modImplementation "com.github.Turnip-Labs:bta-halplibe:${project.halplibe_version}"
+	//modImplementation "com.github.Turnip-Labs:bta-halplibe:${project.halplibe_version}"
 
-	modImplementation "ModMenu:ModMenu:${project.mod_menu_version}"
+	//modImplementation "ModMenu:ModMenu:${project.mod_menu_version}"
 
 	implementation "org.slf4j:slf4j-api:1.8.0-beta4"
 	implementation "org.apache.logging.log4j:log4j-slf4j18-impl:2.16.0"
