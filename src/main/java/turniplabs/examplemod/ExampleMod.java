@@ -11,28 +11,29 @@ import turniplabs.halplibe.util.RecipeEntrypoint;
 public class ExampleMod implements ModInitializer, GameStartEntrypoint, RecipeEntrypoint {
     public static final String MOD_ID = "examplemod";
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
+
     @Override
     public void onInitialize() {
         LOGGER.info("ExampleMod initialized.");
     }
 
-	@Override
-	public void beforeGameStart() {
+    @Override
+    public void beforeGameStart() {
 
-	}
+    }
 
-	@Override
-	public void afterGameStart() {
+    @Override
+    public void afterGameStart() {
 
-	}
+    }
 
-	@Override
-	public void onRecipesReady() {
+    @Override
+    public void onRecipesReady() {
 
-	}
+    }
 
-	@Override
-	public void initNamespaces() {
+    @Override
+    public void initNamespaces() {
 
-	}
+    }
 }
