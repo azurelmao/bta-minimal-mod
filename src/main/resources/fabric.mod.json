@@ -13,30 +13,30 @@
     "sources": ""
   },
 
-	"icon": "icon.png",
+  "icon": "icon.png",
   "license": "CC0-1.0",
 
   "environment": "*",
   "entrypoints": {
     "main": [
-			"turniplabs.examplemod.ExampleMod"
+      "turniplabs.examplemod.ExampleMod"
     ],
-		"beforeGameStart": [
-			"turniplabs.examplemod.ExampleMod"
-		],
-		"afterGameStart": [
-			"turniplabs.examplemod.ExampleMod"
-		],
-		"recipesReady": [
-			"turniplabs.examplemod.ExampleMod"
-		]
-	},
+    "beforeGameStart": [
+      "turniplabs.examplemod.ExampleMod"
+    ],
+    "afterGameStart": [
+      "turniplabs.examplemod.ExampleMod"
+    ],
+    "recipesReady": [
+      "turniplabs.examplemod.ExampleMod"
+    ]
+  },
   "mixins": [
       "examplemod.mixins.json"
   ],
 
   "depends": {
-		"minecraft": "~7.1",
+    "minecraft": "~7.1",
     "fabricloader": ">=0.15.5"
   },
   "suggests": {
