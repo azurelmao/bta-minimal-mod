@@ -1,5 +1,5 @@
 plugins {
-	id 'babric-loom' version '1.4.+'
+	id 'babric-loom' version '1.5.+'
 	id 'java'
 }
 
