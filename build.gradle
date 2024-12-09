@@ -5,7 +5,7 @@ plugins {
 
 import org.gradle.internal.os.OperatingSystem
 
-project.ext.lwjglVersion = "3.3.1"
+project.ext.lwjglVersion = "3.3.4"
 
 switch (OperatingSystem.current()) {
 	case OperatingSystem.LINUX:
@@ -24,7 +24,7 @@ version = project.mod_version
 
 loom {
 	noIntermediateMappings()
-	customMinecraftMetadata.set("https://nightly.betterthanadventure.net/bta-${project.bta_version}-manifest.json")
+	customMinecraftMetadata.set("https://github.com/Turnip-Labs/bta-manifest-repo/releases/download/v${project.bta_version}/${project.bta_version}.json")
 }
 
 repositories {
@@ -42,6 +42,10 @@ repositories {
 		name = 'signalumMaven'
 		url = 'https://maven.thesignalumproject.net/infrastructure'
 	}
+	maven {
+		name = 'signalumMaven'
+		url = 'https://maven.thesignalumproject.net/releases'
+	}
 	ivy {
 		url = "https://github.com/Better-than-Adventure"
 		patternLayout {
@@ -51,9 +55,17 @@ repositories {
 		metadataSources { artifact() }
 	}
 	ivy {
-		url = "https://nightly.betterthanadventure.net"
+		url = "https://downloads.betterthanadventure.net/bta-client/prerelease/"
 		patternLayout {
-			artifact "/bta-[revision]-client.jar"
+			artifact "/v[revision]/client.jar"
+			m2compatible = true
+		}
+		metadataSources { artifact() }
+	}
+	ivy {
+		url = "https://downloads.betterthanadventure.net/bta-server/prerelease/"
+		patternLayout {
+			artifact "/v[revision]/server.jar"
 			m2compatible = true
 		}
 		metadataSources { artifact() }
@@ -66,6 +78,7 @@ repositories {
 		}
 		metadataSources { artifact() }
 	}
+
 }
 
 dependencies {
@@ -73,16 +86,13 @@ dependencies {
 	mappings loom.layered() {}
 
 	modRuntimeOnly "objects:client:43db9b498cb67058d2e12d394e6507722e71bb45" // https://piston-data.mojang.com/v1/objects/43db9b498cb67058d2e12d394e6507722e71bb45/client.jar
-	modImplementation "babric:fabric-loader:${project.loader_version}"
-
-	// Nightly builds are highly unstable, it is very likely that even these base mods might not work!
-	// Uncomment at your own risk.
+	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
 	// Helper library
 	// If you do not need Halplibe you can comment this line out or delete this line
-	//modImplementation "com.github.Turnip-Labs:bta-halplibe:${project.halplibe_version}"
+	//implementation("turniplabs:halplibe:${project.halplibe_version}")
 
-	//modImplementation "ModMenu:ModMenu:2.0.6"
+	modImplementation("turniplabs:modmenu-bta:${project.mod_menu_version}")
 
 	implementation "org.slf4j:slf4j-api:1.8.0-beta4"
 	implementation "org.apache.logging.log4j:log4j-slf4j18-impl:2.16.0"
@@ -96,7 +106,7 @@ dependencies {
 
 	include(implementation("org.apache.commons:commons-lang3:3.12.0"))
 
-	modImplementation("com.github.zarzelcow:legacy-lwjgl3:1.0.1")
+	modImplementation("com.github.zarzelcow:legacy-lwjgl3:1.0.4")
 	implementation platform("org.lwjgl:lwjgl-bom:$lwjglVersion")
 
 	runtimeOnly "org.lwjgl:lwjgl::$lwjglNatives"
@@ -105,12 +115,12 @@ dependencies {
 	runtimeOnly "org.lwjgl:lwjgl-openal::$lwjglNatives"
 	runtimeOnly "org.lwjgl:lwjgl-opengl::$lwjglNatives"
 	runtimeOnly "org.lwjgl:lwjgl-stb::$lwjglNatives"
-	implementation "org.lwjgl:lwjgl::$lwjglNatives"
-	implementation "org.lwjgl:lwjgl-assimp::$lwjglNatives"
-	implementation "org.lwjgl:lwjgl-glfw::$lwjglNatives"
-	implementation "org.lwjgl:lwjgl-openal::$lwjglNatives"
-	implementation "org.lwjgl:lwjgl-opengl::$lwjglNatives"
-	implementation "org.lwjgl:lwjgl-stb::$lwjglNatives"
+	implementation "org.lwjgl:lwjgl:$lwjglVersion"
+	implementation "org.lwjgl:lwjgl-assimp:$lwjglVersion"
+	implementation "org.lwjgl:lwjgl-glfw:$lwjglVersion"
+	implementation "org.lwjgl:lwjgl-openal:$lwjglVersion"
+	implementation "org.lwjgl:lwjgl-opengl:$lwjglVersion"
+	implementation "org.lwjgl:lwjgl-stb:$lwjglVersion"
 }
 
 java {
