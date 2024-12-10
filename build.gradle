@@ -55,7 +55,7 @@ repositories {
 		metadataSources { artifact() }
 	}
 	ivy {
-		url = "https://downloads.betterthanadventure.net/bta-client/prerelease/"
+		url = "https://downloads.betterthanadventure.net/bta-client/${project.bta_channel}/"
 		patternLayout {
 			artifact "/v[revision]/client.jar"
 			m2compatible = true
@@ -63,7 +63,7 @@ repositories {
 		metadataSources { artifact() }
 	}
 	ivy {
-		url = "https://downloads.betterthanadventure.net/bta-server/prerelease/"
+		url = "https://downloads.betterthanadventure.net/bta-server/${project.bta_channel}/"
 		patternLayout {
 			artifact "/v[revision]/server.jar"
 			m2compatible = true
