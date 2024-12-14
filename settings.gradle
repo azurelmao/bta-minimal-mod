@@ -14,7 +14,7 @@ pluginManagement {
             url = 'https://maven.glass-launcher.net/babric'
         }
 		maven {
-			name = 'signalumMaven'
+			name = 'SignalumMavenInfrastructure'
 			url = 'https://maven.thesignalumproject.net/infrastructure'
 		}
     }
