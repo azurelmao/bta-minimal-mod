@@ -24,6 +24,10 @@ repositories {
 		name = 'Fabric'
 		url = 'https://maven.fabricmc.net/'
 	}
+	maven {
+		name = 'SignalumMavenReleases'
+		url "https://maven.thesignalumproject.net/releases"
+	}
 	ivy {
 		url = "https://github.com/Better-than-Adventure"
 		patternLayout {
@@ -83,7 +87,7 @@ dependencies {
 
 	// Helper library
 	// If you do not need Halplibe you can comment this line out or delete this line
-	modImplementation "com.github.Turnip-Labs:bta-halplibe:${project.halplibe_version}"
+	implementation "turniplabs:halplibe:${project.halplibe_version}"
 
 	modImplementation "ModMenu:ModMenu:${project.mod_menu_version}"
 
